@@ -15,7 +15,7 @@ def numero_de_ventas(nombre_archivo, columna, valor_buscado): # Función que per
                 
     return contador # Se retorna el total de la suma
 
-archivo_csv = r"C:\Users\danim\OneDrive\Escritorio\Primer semestre\Programación I\Entrega2_2025\SalesJan2009.csv" # Ruta del archivo
+archivo_csv = r"C:\Users\danim\OneDrive\Escritorio\Primer semestre\Programación I\Entrega2_2025-1\SalesJan2009.csv" # Ruta del archivo
 pais = input("Ingrese el país del que desea información: ").strip() # Se le pide la información al usuario
 
 # Corriendo el programa 
