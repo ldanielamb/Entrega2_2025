@@ -20,7 +20,7 @@ def paises(nombre_archivo,columna): # Función para buscar cuáles países está
         leer = csv.reader(archivo) # Se configura para ser leído con el método csv.reader
         titulos = next(leer) # Se va a leer solo la primera fila con el next
         indice_titulo = titulos.index(columna) # Se busca el índice en la primera fila de la columna deseada, que en este caso tiene el nombre de country
-        paises = {fila[indice_titulo].strip() for fila in leer} # Se crea un diccionario (que no permite repeticiones) que tiene como elemento el país encontrado al recorrer cada fila con el índice antes definido
+        paises = {fila[indice_titulo].strip().lower() for fila in leer} # Se crea un diccionario (que no permite repeticiones) que tiene como elemento el país encontrado al recorrer cada fila con el índice antes definido
     return sorted(paises) # Se retorna la variable ordenada alfabéticamente
 
 
@@ -32,18 +32,18 @@ print("------------------------Países en los que se registraron ventas---------
 paises_disponibles = paises(archivo_csv,"Country") # Se llama a la función con los parámetros correspondientes
 
 for pais in paises_disponibles: # Se va a imprimir cada resultado encontrado en el diccionario
-    print(f"- {pais}")
+    print(f"- {pais.capitalize()}")
 
 print("\n---------------------------------------------------------------------------------------")
 while True: # Ciclo para manejar errores
     try:
-        pais = input("Ingrese el país del que desea información: ").strip() # El usuario ingresa el país
+        pais = input("Ingrese el país del que desea información: ").strip().lower() # El usuario ingresa el país
         
         if pais not in paises_disponibles: # Si la opción no es correcta, es decir, no se encuentra entre los valores que se obtuvieron en el diccionario
             raise ValueError("El país ingresado no está en la lista. Intente de nuevo.") # Se va a imprimir ese mensaje personalizado
 
         resultado = numero_de_ventas(archivo_csv, "Country", pais) # Fuera del condicional, se establece lo que pasa si el valor ingresado si se encuentra en las opciones
-        print(f"\nEl país '{pais}' ha registrado {resultado} ventas en el mes.") 
+        print(f"\nEl país '{pais.capitalize()}' ha registrado {resultado} ventas en el mes.") 
         break  # Salimos del loop si la entrada es correcta
 
     except ValueError as e: 
